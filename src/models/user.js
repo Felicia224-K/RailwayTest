@@ -1,8 +1,8 @@
 const {DataTypes} = require("sequelize");
 const sequelize = require("../config/database");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
-const user = sequelize.define("user", {
+const User = sequelize.define("user", {
     id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -30,15 +30,19 @@ const user = sequelize.define("user", {
         timestamps: true
     });
 
-    user.beforeCreate(async (user) => {
+    User.beforeCreate(async (user) => {
         user.password = await bcrypt.hash(user.password,12);
     });
 
 
-    const sensor = require("./sensor");
 
-    user.hasMany(sensor, { foreignKey: "userId", as: "sensors"});
 
-    sensor.belongsTo(user, {foreignKey: "userId", as: "owner"});
+    const Sensor = require("./sensor");
 
-    module.exports = user;
+    User.hasMany(Sensor, { foreignKey: "userId", as: "sensors"});
+
+    Sensor.belongsTo(User, {foreignKey: "userId", as: "owner"});
+
+
+
+    module.exports = User;

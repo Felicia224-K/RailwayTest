@@ -25,7 +25,7 @@ const sensor = sequelize.define("sensor", {
 
     unit: {
         type: DataTypes.STRING(10),
-        defaultValue: ""
+        defaultValue: " "
     },
 
     isActive: {
