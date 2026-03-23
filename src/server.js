@@ -2,8 +2,8 @@ require('dotenv').config();
 const app = require('./app');
 
 const sequelize = require("./config/database");
-require("./models/User");
-require("./models/Sensor");
+require("./models/user");
+require("./models/sensor");
 
 
 sequelize.sync({ alter: true})
@@ -20,4 +20,4 @@ sequelize.sync({ alter: true }) // alter: true met a jour les tables sans les su
   .then(() => console.log('Base de donnees synchronisee')) 
   .catch(err => console.error('Erreur BDD :', err));
 
-app.listen(PORT,  () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT,'0.0.0.0',  () => console.log(`Server running on port ${PORT}`));

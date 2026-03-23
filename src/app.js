@@ -29,6 +29,9 @@ app.use(logger);
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send("Server is up and running");
+})
 
 
 const authRoutes = require("./routes/auth");
@@ -48,6 +51,7 @@ app.get("/api/health", (req, res) => {
 app.use((req, res) => {
   res.status(404).json({ success: false, error: `Route ${req.url} not found` });
 });
+
 
 
 const errorHandler = require('./middleware/errorHandler');
