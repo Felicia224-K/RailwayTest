@@ -12,6 +12,8 @@ sequelize.sync({ alter: true})
 
 console.log('JWT_SECRET:', process.env.JWT_SECRET);
 
+console.log("ENV:", process.env.DATABASE_URL);
+
 
 const PORT = process.env.PORT || 3000;
 
