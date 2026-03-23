@@ -37,12 +37,6 @@ const User = sequelize.define("user", {
 
 
 
-    const Sensor = require("./sensor");
-
-    User.hasMany(Sensor, { foreignKey: "userId", as: "sensors"});
-
-    Sensor.belongsTo(User, {foreignKey: "userId", as: "owner"});
-
 
 
     module.exports = User;
